@@ -1,113 +1,180 @@
-/* Style your app*/
-.container {
-  max-width: 1200px;
-  width: 100%;
-  background: rgb(246, 244, 244);
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  padding: 20px;
-  margin: 20px auto;
-  display: flex;
-  flex-direction: column;
+/* 🌈 Background */
+body {
+ margin: 0;
+ font-family: "Segoe UI", sans-serif;
+ background: linear-gradient(135deg, #667eea, #764ba2);
+ color: #1f2937;
 }
 
-.header {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 15px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-  justify-content: space-between;
+
+/* 🧱 Header (UNCHANGED STYLE) */
+h1 {
+ text-align: center;
+ margin-top: 20px;
+ color: white;
 }
 
-.header h1 {
-  width: 100%;
-  text-align: center;
-  margin-bottom: 10px;
+
+#display {
+ text-align: center;
+ color: #e5e7eb;
+ margin-bottom: 10px;
 }
 
-.header input,
-.header select {
-  flex: 1;
-  min-width: 150px;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 14px;
+
+/* 🧊 Glass top bar */
+.box {
+ display: flex;
+ justify-content: center;
+ gap: 12px;
+ padding: 12px 18px;
+
+
+ background: rgba(255, 255, 255, 0.2);
+ backdrop-filter: blur(10px);
+
+
+ border-radius: 12px;
+ width: fit-content;
+ margin: 20px auto;
+
+
+ box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
-#count {
-  width: 100%;
-  font-size: 14px;
-  color: #555;
-  margin-top: 5px;
+
+/* 🔍 Inputs */
+#search,
+#select {
+ padding: 8px 12px;
+ border-radius: 8px;
+ border: none;
+ outline: none;
+ font-size: 14px;
 }
 
-.display-page {
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 20px;
+
+/* ✨ Input focus */
+#search:focus,
+#select:focus {
+ box-shadow: 0 0 0 2px #a78bfa;
 }
 
-.card {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 12px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+
+/* 🔍 Search icon */
+.search-wrapper {
+ position: relative;
+ display: inline-block;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+
+.search-wrapper input {
+ padding-right: 30px;
 }
 
-/* Episode Title */
-.card h3 {
-  font-size: 16px;
-  text-align: center;
-  background: #eef2ff;
-  padding: 8px;
-  border-radius: 6px;
+
+.search-icon {
+ position: absolute;
+ right: 10px;
+ top: 50%;
+ transform: translateY(-50%);
+ color: gray;
+ pointer-events: none;
 }
 
-/* Episode Image */
-.card img {
-  width: 100%;
-  border-radius: 8px;
-  margin-top: 10px;
+
+/* 🎬 GRID (CENTERED LIKE 2ND UI) */
+#root {
+ display: grid;
+ grid-template-columns: repeat(4, 1fr);
+ gap: 20px;
+
+
+ max-width: 1200px;   /* 🔥 important */
+ margin: 0 auto;      /* 🔥 center */
+ padding: 20px;       /* 🔥 side spacing */
 }
 
-/* Episode Summary */
-.card p {
-  font-size: 13px;
-  margin-top: 10px;
-  line-height: 1.5;
-  color: #333;
+
+/* 📱 Tablet */
+@media (max-width: 1024px) {
+ #root {
+   grid-template-columns: repeat(2, 1fr);
+ }
 }
 
-footer {
-  text-align: center;
-  margin-top: auto;
-  padding: 10px;
-  font-size: 14px;
-  color: #666;
-}
 
-/* === Responsive (mobile) === */
+/* 📱 Mobile */
 @media (max-width: 600px) {
-  .header {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .header input,
-  .header select {
-    width: 100%;
-  }
+ #root {
+   grid-template-columns: 1fr;
+ }
 }
+
+
+/* 🎞️ CARD */
+.card {
+ background: white;
+ border-radius: 18px;
+ overflow: hidden;
+
+
+ box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+ transition: all 0.3s ease;
+
+
+ display: flex;
+ flex-direction: column;
+}
+
+
+/* 🔥 Hover */
+.card:hover {
+ transform: translateY(-8px) scale(1.02);
+ box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+}
+
+
+/* 🏷️ Title */
+.card h3 {
+ font-size: 14px;
+ padding: 10px;
+ margin: 10px;
+
+
+ background: linear-gradient(90deg, #6366f1, #8b5cf6);
+ color: white;
+
+
+ text-align: center;
+ border-radius: 8px;
+}
+
+
+/* 🖼️ Image */
+.card img {
+ width: calc(100% - 20px);
+ margin: 0 10px;
+ border-radius: 10px;
+
+
+ transition: transform 0.3s ease;
+}
+
+
+/* 🔍 Image hover */
+.card:hover img {
+ transform: scale(1.05);
+}
+
+
+/* 📝 Text */
+.card p {
+ padding: 14px 16px 18px;
+ font-size: 14px;
+ color: #4b5563;
+ line-height: 1.6;
+}
+
+
+

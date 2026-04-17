@@ -1,43 +1,53 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TV Show Project |Ahmad Roman (RomanSanaye)</title>
-    <link href="style.css" rel="stylesheet" />
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-  </head>
+ <head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>TV Show Project |Arunkumar Akilan (arunkumarakilan)</title>
+   <link href="style.css" rel="stylesheet" />
+   <link rel="icon" href="favicon.ico" />
+ <link
+ rel="stylesheet"
+ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+ </head>
 
-  <body>
-    <div id="root">
-      <div id="container" class="container">
-        <header class="header">
-          <h1>Tv Show Guide</h1>
-          <input
-            id="input"
-            type="text"
-            placeholder="Search Seasons / Episodes"
-          />
-          <select id="select" class="select">
-            Select
-          </select>
-          <p id="count"></p>
-        </header>
-        <main id="display-page" class="display-page"></main>
-        <footer>Made by CYF trainee</footer>
-      </div>
-    </div>
-    <template id="film-card">
-      <section class="card">
-        <h3>film title</h3>
-        <img />
-        <p>summary</p>
-      </section>
-    </template>
-    <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
-    <!--script src="episodes.js"></script-->
 
-    <!-- Loads YOUR javascript code -->
-    <script src="script.js"></script>
-  </body>
+ <body>
+     <header class="header">
+         <h1 class="title">TV Show Episode</h1>
+   <div class = "box">
+    <select id="select" >
+       <option value="">All episodes</option>
+    </select>
+   <div class="search-wrapper">
+ <input type="search" id="search" name="q" placeholder="Search episodes" />
+ <span class="search-icon">
+   <i class="fas fa-search"></i>
+ </span>
+ </div>
+   <p id ="display"></p>
+   </div>
+   <div id="root" class ="container">
+   </div>
+   <template id ="film-card">
+    <section class = "card">
+    <h3>film title</h3>
+    <img>
+    <p>summary</p>
+    </section>
+  </template>
+   <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
+   <script src="episodes.js"></script>
+
+
+   <!-- Loads YOUR javascript code -->
+   <script src="script.js"></script>
+ </body>
+ <footer></footer>
 </html>
+
+
+
+
+
