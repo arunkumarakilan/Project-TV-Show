@@ -1,9 +1,9 @@
 //=> store data in single location
-const state = { film:[], searchTerm: "", selectTerm: "" };
+const state = { episode:[], searchTerm: "", selectTerm: "" };
 //=> display episode count 
 function displayCount() {
   const rootElem = document.getElementById("display");
-  rootElem.textContent = `Displaying ${filteredFilmCards().length}/${state.film.length} episodes`;
+  rootElem.textContent = `Displaying ${filteredEpisodeCards().length}/${state.episode.length} episodes`;
 }
 //=> fetch API
  async function fetchEpisode() {
@@ -14,8 +14,8 @@ function displayCount() {
       {
         throw new Error (`HTTP error! status:${response.status}`);
       }
-      const films = await response.json();
-      return films;
+      const episodes = await response.json();
+      return episodes;
      }
      catch(error){
          const root = document.getElementById("root");
@@ -39,58 +39,58 @@ function displayCount() {
          // 👉 retry logic
          document.getElementById("retryBtn").addEventListener("click", () => {
            root.textContent = "Loading episodes...";
-           fetchEpisode().then((films) => {
-             if (!films) return;
-             state.film = films;
+           fetchEpisode().then((episodes) => {
+             if (!episodes) return;
+             state.episode = episodes;
              render();
            });
          });
       console.error("Error fetching films:",error);
      }
  };
- fetchEpisode().then((films)=>{
-  if(!films)return;
-  state.film = films;
+ fetchEpisode().then((episodes)=>{
+  if(!episodes)return;
+  state.episode = episodes;
   render();
  })
 
 //=> create film card for one episode 
-function createFilmCard(film) {
-  const filmCard = document.getElementById("film-card").content.cloneNode(true);
-  filmCard.querySelector("h3").textContent =
-    `${film.name}S${film.season.toString().padStart(2, "0")}E${film.number.toString().padStart(2, "0")}`;
-  filmCard.querySelector("img").src = film.image.medium;
-  filmCard.querySelector("p").innerHTML = film.summary;
-  return filmCard;
+function createEpisodeCard(episode) {
+  const episodeCard = document.getElementById("film-card").content.cloneNode(true);
+  episodeCard.querySelector("h3").textContent =
+    `${episode.name}S${episode.season.toString().padStart(2, "0")}E${episode.number.toString().padStart(2, "0")}`;
+  episodeCard.querySelector("img").src = episode.image.medium;
+  episodeCard.querySelector("p").innerHTML = episode.summary;
+  return episodeCard;
 }
 //=> filter function for search and select
-function filteredFilmCards() {
-  return state.film.filter((film) => {
-    const code = `${film.name}S${film.season.toString().padStart(2, "0")}E${film.number.toString().padStart(2, "0")}`;
+function filteredEpisodeCards() {
+  return state.episode.filter((episode) => {
+    const code = `${episode.name}S${episode.season.toString().padStart(2, "0")}E${episode.number.toString().padStart(2, "0")}`;
 
     const searchInputMatch =
       code.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
-      film.summary.toLowerCase().includes(state.searchTerm.toLowerCase());
+      episode.summary.toLowerCase().includes(state.searchTerm.toLowerCase());
     const selectInputMatch =
-      `S${film.season.toString().padStart(2, "0")}E${film.number.toString().padStart(2, "0")}-${film.name}` ===
+      `S${episode.season.toString().padStart(2, "0")}E${episode.number.toString().padStart(2, "0")}-${episode.name}` ===
         state.selectTerm || state.selectTerm === "";
     return searchInputMatch && selectInputMatch;
   });
 }
 //=> create episode list for select drop down
-function createEpisodeList(film) {
+function createEpisodeList(episode) {
   const episodeList = document.createElement("option");
-  episodeList.textContent = `S${film.season.toString().padStart(2, "0")}E${film.number.toString().padStart(2, "0")}-${film.name}`;
+  episodeList.textContent = `S${episode.season.toString().padStart(2, "0")}E${episode.number.toString().padStart(2, "0")}-${episode.name}`;
   return episodeList;
 }
 //=> render function for render the UI
 function render() {
-  const episodeList = state.film.map(createEpisodeList);
+  const episodeList = state.episode.map(createEpisodeList);
   document.getElementById("select").append(...episodeList);
-  const filmCard = filteredFilmCards().map(createFilmCard);
+  const episodeCard = filteredEpisodeCards().map(createEpisodeCard);
   document.getElementById("root").innerHTML = "";
-  document.getElementById("root").append(...filmCard);
-  displayCount(state.film);
+  document.getElementById("root").append(...episodeCard);
+  displayCount(state.episode);
 }
 render();
 //=> event listener for select and search
