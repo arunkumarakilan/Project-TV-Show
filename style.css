@@ -176,5 +176,18 @@ h1 {
  line-height: 1.6;
 }
 
+footer {
+  text-align: center;
+  padding: 15px;
 
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  color: white;
+
+  margin-top: 30px;
+  font-family: "Segoe UI", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
 
