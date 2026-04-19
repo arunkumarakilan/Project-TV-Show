@@ -1,57 +1,74 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TV Show Project |Arunkumar Akilan (arunkumarakilan)</title>
-    <link href="style.css" rel="stylesheet" />
-    <link rel="icon" href="favicon.ico" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-  </head>
+ <head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>TV Show Project |Arunkumar Akilan (arunkumarakilan)</title>
+   <link href="style.css" rel="stylesheet" />
+   <link rel="icon" href="favicon.ico" />
+   <link
+     rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+   />
+ </head>
 
-  <body>
-    <header class="header">
-      <h1 class="title">TV Show Episode</h1>
-      <div id ="box" class="box">
-        <select id="show-list">
-          <option value="">All Show</option>
-        </select>
-        <select id="select">
-          <option value="">All episodes</option>
-        </select>
-        <div class="search-wrapper">
-          <input
-            type="search"
-            id="search"
-            name="q"
-            placeholder="Search episodes"
-          />
-          <span class="search-icon">
-            <i class="fas fa-search"></i>
-          </span>
-        </div>
-        <p id="display"></p>
-      </div>
-    </header>
-    <div id="show-container"></div>
-    <div id="root" class="container"></div>
-    <template id="film-card">
-      <section class="card">
-        <h3>film title</h3>
-        <img />
-        <p>summary</p>
-      </section>
-    </template>
-    <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
 
-    <!-- Loads YOUR javascript code -->
+ <body>
+   <header class="header">
+     <h1 class="title">TV Show Episodes</h1>
+     <div id ="box" class="box">
+       <input type="search" id="show-search" placeholder="Search shows">
+       <select id="show-list">
+         <option value="">All Show</option>
+       </select>
+       <select id="select">
+         <option value="">All episodes</option>
+       </select>
+      
+         <input
+           type="search"
+           id="search"
+           name="q"
+           placeholder="Search episodes"
+         />
+       <p id="display-episode-count"></p>
+       <p id="display-show-count"></p>
+       <button id ="view-all-shows">View All Shows</button>
+     </div>
+   </header>
+   <div id="show-container"></div>
+   <div id="root" class="container"></div>
+   <template id="show-card">
+     <section class="card">
+       <h3>film title</h3>
+       <img />
+       <p>summary</p>
+       <div id="details">
+        <p id="genre"></p>
+        <p id="status"></p>
+        <p id="rating"></p>
+        <p id="runtime"></p>
+       </div>
+     </section>
+   </template>
+    <template id="episode-card">
+     <section class="card">
+       <h3>film title</h3>
+       <img />
+       <p>summary</p>
+       </section>
+       </template>
+   <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
+
+
+   <!-- Loads YOUR javascript code -->
     <script src="script.js"></script>
-  </body>
-  <footer>
-    <p>Made by CYF Trainee</p>
-    <p>@Data from TVMaze</p>
-  </footer>
+ </body>
+ <footer>
+   <p>Made by CYF Trainee</p>
+   <p>@Data from TVMaze</p>
+ </footer>
 </html>
+
+
+
