@@ -5,15 +5,19 @@ const state = {
   selectTerm: "",
   selectShow: "",
   showId: "",
+  showSearch: "",
 };
 
 const showEpisode = document.getElementById("show-container");
 
 //=> display episode count
-function displayCount() {
-  const rootElem = document.getElementById("display");
+function displayEpisodeCount() {
+  const rootElem = document.getElementById("display-episode-count");
   rootElem.textContent = `Displaying ${filteredEpisodeCards().length}/${state.episodes.length} episodes`;
-  //rootElem.textContent = `Displaying ${filteredShowCards().length}/${state.shows.length} episodes`;
+}
+function displayShowCount(){
+  const displayShowCount = document.getElementById("display-show-count");
+  displayShowCount.textContent = `Displaying ${filteredShowCards().length}/${state.shows.length} shows`;
 }
 function setup() {
   async function fetchShow() {
@@ -104,13 +108,18 @@ function episodeSource() {
 }
 //=>create show card for one show
 function createShowCard(show) {
-  const showCard = document.getElementById("film-card").content.cloneNode(true);
+  const showCard = document.getElementById("show-card").content.cloneNode(true);
   const cardElement = showCard.querySelector(".card");
   cardElement.querySelector("h3").textContent = show.name;
   cardElement.querySelector("img").src = show.image.medium;
   cardElement.querySelector("p").innerHTML = show.summary;
+  cardElement.querySelector("#genre").textContent =`Genres: ${show.genres}`;
+  cardElement.querySelector("#status").textContent = `Status: ${show.status}`;
+  cardElement.querySelector("#rating").textContent= `Rating: ${show.rating.average}`
+  cardElement.querySelector("#runtime").textContent=`Runtime: ${show.runtime}`
   cardElement.addEventListener("click", () => {
     showEpisode.style.display = "none";
+    document.getElementById("show-list").style.display="none";
     state.showId = show.id;
     episodeSource();
   });
@@ -120,7 +129,7 @@ function createShowCard(show) {
 //=> create episode card for one episode
 function createEpisodeCard(episode) {
   const episodeCard = document
-    .getElementById("film-card")
+    .getElementById("episode-card")
     .content.cloneNode(true);
   episodeCard.querySelector("h3").textContent =
     `${episode.name}S${episode.season.toString().padStart(2, "0")}E${episode.number.toString().padStart(2, "0")}`;
@@ -130,10 +139,13 @@ function createEpisodeCard(episode) {
 }
 //=>
 function filteredShowCards() {
-  filteredShow = state.shows.filter((show) => {
-    return show.name === state.selectShow || state.selectShow === "";
+  return filteredShow = state.shows.filter((show) => {
+    const selectShow = show.name === state.selectShow || state.selectShow === "";
+    const searchShow = show.name.toLowerCase().includes(state.showSearch.toLowerCase())
+    return selectShow && searchShow;
   });
-  return filteredShow;
+  
+  
 }
 //=> filter function for search and select
 function filteredEpisodeCards() {
@@ -188,7 +200,10 @@ function showRender() {
     .map(createShowCard);
   document.getElementById("show-container").innerHTML = "";
   document.getElementById("show-container").append(...showCard);
-  displayCount(state.shows);
+ document.getElementById("search").style.display ="none";
+ document.getElementById("select").style.display = "none";
+ document.getElementById("view-all-shows").style.display="none";
+ displayShowCount(state.shows);
 }
 //=> render function for render the UI
 function render() {
@@ -197,23 +212,53 @@ function render() {
   const episodeCard = filteredEpisodeCards().map(createEpisodeCard);
   document.getElementById("root").innerHTML = "";
   document.getElementById("root").append(...episodeCard);
-  displayCount(state.episodes);
+  document.getElementById("select").style.display = "grid";
+  document.getElementById("search").style.display = "grid";
+  document.getElementById("show-search").style.display="none";
+  document.getElementById("display-show-count").style.display ="none";
+  document.getElementById("display-episode-count").style.display = "block";
+   document.getElementById("view-all-shows").style.display = "grid";
+ displayEpisodeCount(state.episodes);
 }
-//=> event listener for select and search
-const input = document.getElementById("search");
-input.addEventListener("keyup", () => {
-  state.searchTerm = input.value;
-  document.getElementById("root").innerHTML = "";
-  render();
-});
-const select = document.getElementById("select");
-select.addEventListener("change", () => {
-  state.selectTerm = select.value;
-  render();
-});
-const selectShow = document.getElementById("show-list");
-selectShow.addEventListener("change", () => {
-  state.selectShow = selectShow.value;
+  //=> search listener
+  const input = document.getElementById("search");
+  input.addEventListener("keyup", () => {
+    state.searchTerm = input.value;
+    document.getElementById("root").innerHTML = "";
+    render();
+  });
+  //=> select drop-down listener
+  const select = document.getElementById("select");
+  select.addEventListener("change", () => {
+    state.selectTerm = select.value;
+    render();
+  });
+  //=> search listener for shows....
+  const searchShow =document.getElementById("show-search");
+  searchShow.addEventListener("keyup",()=>{
+    state.showSearch = searchShow.value;
+    showRender();
+  })
+   //=> select drop down listener for shows
+ const selectShow = document.getElementById("show-list");
+ selectShow.addEventListener("change", () => {
+   state.selectShow = selectShow.value;
+     document.getElementById("root").style.display ="none";
+     document.getElementById("display-episode-count").style.display="none";
+     document.getElementById("show-container").style.display = "grid";
+   showRender();
+ });
+ //=> view All show listener
+ const viewAllShows = document.getElementById("view-all-shows");
+ viewAllShows.addEventListener("click",()=>{
+  document.getElementById("root").innerHTML="";
+  document.getElementById("show-container").style.display="grid";
+  document.getElementById("display-show-count").style.display= "block";
+  document.getElementById("display-episode-count").style.display ="none";
+  document.getElementById("show-search").style.display="block";
+   document.getElementById("show-list").style.display = "block";
   showRender();
-});
+ 
+ })
+
 window.onload = setup;
