@@ -246,7 +246,6 @@ searchShow.addEventListener("keyup", () => {
 const selectShow = document.getElementById("show-list");
 selectShow.addEventListener("change", () => {
   state.selectShow = selectShow.value;
-  document.getElementById("root").style.display = "none";
   document.getElementById("display-episode-count").style.display = "none";
   document.getElementById("show-container").style.display = "grid";
   showRender();
