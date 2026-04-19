@@ -1,6 +1,5 @@
 /* 🌈 Background */
 body {
-<<<<<<< HEAD
  margin: 0;
  font-family: "Segoe UI", sans-serif;
  background: linear-gradient(135deg, #667eea, #764ba2);
@@ -14,28 +13,15 @@ body {
 }
 
 
-=======
-  margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: #1f2937;
-
-  /* 👉 sticky footer setup */
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
->>>>>>> 08195f67b7b9974efdbd337c95c49aa35105ea3d
 /* 🧱 Header */
 h1 {
-  text-align: center;
-  margin-top: 20px;
-  color: white;
+ text-align: center;
+ margin-top: 20px;
+ color: white;
 }
 
+
 #display {
-<<<<<<< HEAD
  display: grid;
  text-align: center;
  color: #e5e7eb;
@@ -54,32 +40,13 @@ h1 {
  border-radius: 12px;
  width: fit-content;
  margin: 20px auto;
-=======
-  display: grid;
-  text-align: center;
-  color: #e5e7eb;
-  margin-bottom: 10px;
 }
 
-/* 🧊 Top bar */
-.box {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  padding: 10px 16px;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
-  width: fit-content;
-  margin: 20px auto;
->>>>>>> 08195f67b7b9974efdbd337c95c49aa35105ea3d
-}
 
 /* 🔍 Inputs */
 #search,
 #select,
 #show-list {
-<<<<<<< HEAD
  padding: 6px 10px;
  border-radius: 8px;
  border: none;
@@ -285,184 +252,3 @@ footer {
  transition: all 0.25s ease;
 }
 
-=======
-  padding: 6px 10px;
-  border-radius: 8px;
-  border: none;
-  font-size: 13px;
-}
-
-/* 🎬 MAIN CONTENT (push footer down) */
-main {
-  flex: 1;
-}
-
-/* 🎬 GRID */
-#root {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 16px;
-}
-
-/* 📱 Responsive */
-@media (max-width: 1024px) {
-  #root {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  #root {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* 🎞️ CARD */
-.card {
-  background: #ffffff;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-  transition: 0.25s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.2);
-}
-
-/* 🏷️ Title */
-.card h3 {
-  font-size: 13px;
-  padding: 6px;
-  margin: 8px;
-  background: linear-gradient(90deg, #6366f1, #8b5cf6);
-  color: white;
-  text-align: center;
-  border-radius: 6px;
-}
-
-/* 🖼️ Image */
-.card img {
-  width: calc(100% - 16px);
-  height: 180px;
-  margin: 0 8px;
-  border-radius: 8px;
-  object-fit: contain;
-  background: #f3f4f6;
-}
-
-/* 📝 Summary */
-.summary {
-  padding: 10px;
-  font-size: 13px;
-  color: #4b5563;
-  line-height: 1.5;
-}
-
-/* 👉 Bold "Summary" label */
-.summary::before {
-  content: "Summary: ";
-  font-weight: bold;
-  color: #111827;
-}
-
-/* 📦 DETAILS */
-#details {
-  margin: 10px;
-  padding: 10px;
-  background: #cbcdd0;
-  border-radius: 10px;
-  display: grid;
-  gap: 6px;
-}
-
-/* Detail rows */
-#details p {
-  margin: 0;
-  font-size: 15px;
-  font-weight: 500;
-  flex-wrap: wrap;
-  font-family: "Segoe UI", sans-serif;
-}
-
-/* 👉 Bold labels */
-#details p span {
-  font-weight: bold;
-  color: #374151;
-}
-
-/* 🎬 Show container */
-#show-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  padding: 16px;
-}
-
-/* 📌 STICKY FOOTER */
-footer {
-  text-align: center;
-  padding: 12px;
-  background: linear-gradient(90deg, #6366f1, #8b5cf6);
-  color: white;
-  font-weight: bold;
-  font-size: 13px;
-
-  /* 👉 always visible bottom */
-  margin-top: auto;
-}
-/* 🎯 View All Shows Button */
-#view-all-shows {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 10px;
-
-  font-size: 13px;
-  font-weight: 600;
-
-  color: white;
-  background: linear-gradient(90deg, #6366f1, #8b5cf6);
-
-  cursor: pointer;
-
-  box-shadow: 0 6px 14px rgba(99, 102, 241, 0.4);
-  transition: all 0.25s ease;
-}
-
-/* 🔥 Hover */
-#view-all-shows:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.6);
-}
-
-/* 👇 Click effect */
-#view-all-shows:active {
-  transform: scale(0.95);
-  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.4);
-}
-.box {
-  align-items: center;
-}
-/* 🔍 Search input */
-#show-search {
-  padding: 8px 36px 8px 12px;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-
-  font-size: 13px;
-  width: 180px;
-
-  background: rgba(255, 255, 255, 0.9);
-  color: #111827;
-
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: all 0.25s ease;
-}
->>>>>>> 08195f67b7b9974efdbd337c95c49aa35105ea3d
