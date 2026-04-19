@@ -14,10 +14,7 @@ const showEpisode = document.getElementById("show-container");
 function displayEpisodeCount() {
   const rootElem = document.getElementById("display-episode-count");
   rootElem.textContent = `Displaying ${filteredEpisodeCards().length}/${state.episodes.length} episodes`;
-}
-function displayShowCount() {
-  const displayShowCount = document.getElementById("display-show-count");
-  displayShowCount.textContent = `Displaying ${filteredShowCards().length}/${state.shows.length} shows`;
+  //rootElem.textContent = `Displaying ${filteredShowCards().length}/${state.shows.length} episodes`;
 }
 function setup() {
   async function fetchShow() {
@@ -113,15 +110,8 @@ function createShowCard(show) {
   cardElement.querySelector("h3").textContent = show.name;
   cardElement.querySelector("img").src = show.image.medium;
   cardElement.querySelector("p").innerHTML = show.summary;
-  cardElement.querySelector("#genre").textContent = `Genres: ${show.genres}`;
-  cardElement.querySelector("#status").textContent = `Status: ${show.status}`;
-  cardElement.querySelector("#rating").textContent =
-    `Rating: ${show.rating.average}`;
-  cardElement.querySelector("#runtime").textContent =
-    `Runtime: ${show.runtime}`;
   cardElement.addEventListener("click", () => {
     showEpisode.style.display = "none";
-    document.getElementById("show-list").style.display = "none";
     state.showId = show.id;
     episodeSource();
   });
@@ -141,14 +131,10 @@ function createEpisodeCard(episode) {
 }
 //=>
 function filteredShowCards() {
-  return (filteredShow = state.shows.filter((show) => {
-    const selectShow =
-      show.name === state.selectShow || state.selectShow === "";
-    const searchShow = show.name
-      .toLowerCase()
-      .includes(state.showSearch.toLowerCase());
-    return selectShow && searchShow;
-  }));
+  filteredShow = state.shows.filter((show) => {
+    return show.name === state.selectShow || state.selectShow === "";
+  });
+  return filteredShow;
 }
 //=> filter function for search and select
 function filteredEpisodeCards() {
@@ -203,10 +189,7 @@ function showRender() {
     .map(createShowCard);
   document.getElementById("show-container").innerHTML = "";
   document.getElementById("show-container").append(...showCard);
-  document.getElementById("search").style.display = "none";
-  document.getElementById("select").style.display = "none";
-  document.getElementById("view-all-shows").style.display = "none";
-  displayShowCount(state.shows);
+  displayCount(state.shows);
 }
 //=> render function for render the UI
 function render() {
@@ -215,51 +198,23 @@ function render() {
   const episodeCard = filteredEpisodeCards().map(createEpisodeCard);
   document.getElementById("root").innerHTML = "";
   document.getElementById("root").append(...episodeCard);
-  document.getElementById("select").style.display = "grid";
-  document.getElementById("search").style.display = "grid";
-  document.getElementById("show-search").style.display = "none";
-  document.getElementById("display-show-count").style.display = "none";
-  document.getElementById("display-episode-count").style.display = "block";
-  document.getElementById("view-all-shows").style.display = "grid";
-  displayEpisodeCount(state.episodes);
+  displayCount(state.episodes);
 }
-//=> search listener
+//=> event listener for select and search
 const input = document.getElementById("search");
 input.addEventListener("keyup", () => {
   state.searchTerm = input.value;
   document.getElementById("root").innerHTML = "";
   render();
 });
-//=> select drop-down listener
 const select = document.getElementById("select");
 select.addEventListener("change", () => {
   state.selectTerm = select.value;
   render();
 });
-//=> search listener for shows....
-const searchShow = document.getElementById("show-search");
-searchShow.addEventListener("keyup", () => {
-  state.showSearch = searchShow.value;
-  showRender();
-});
-//=> select drop down listener for shows
 const selectShow = document.getElementById("show-list");
 selectShow.addEventListener("change", () => {
   state.selectShow = selectShow.value;
-  document.getElementById("display-episode-count").style.display = "none";
-  document.getElementById("show-container").style.display = "grid";
   showRender();
 });
-//=> view All show listener
-const viewAllShows = document.getElementById("view-all-shows");
-viewAllShows.addEventListener("click", () => {
-  document.getElementById("root").innerHTML = "";
-  document.getElementById("show-container").style.display = "grid";
-  document.getElementById("display-show-count").style.display = "block";
-  document.getElementById("display-episode-count").style.display = "none";
-  document.getElementById("show-search").style.display = "block";
-  document.getElementById("show-list").style.display = "block";
-  showRender();
-});
-
 window.onload = setup;

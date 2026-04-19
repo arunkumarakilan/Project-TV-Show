@@ -12,6 +12,7 @@
    />
  </head>
 
+<<<<<<< HEAD
 
  <body>
    <header class="header">
@@ -68,6 +69,62 @@
    <p>Made by CYF Trainee</p>
    <p>@Data from TVMaze</p>
  </footer>
+=======
+  <body>
+    <header class="header">
+      <h1 class="title">TV Show Episodes</h1>
+      <div id ="box" class="box">
+        <input type="search" id="show-search" placeholder="Search shows">
+        <select id="show-list">
+          <option value="">All Show</option>
+        </select>
+        <select id="select">
+          <option value="">All episodes</option>
+        </select>
+        
+          <input
+            type="search"
+            id="search"
+            name="q"
+            placeholder="Search episodes"
+          />
+        <p id="display-episode-count"></p>
+        <p id="display-show-count"></p>
+        <button id ="view-all-shows">View All Shows</button>
+      </div>
+    </header>
+    <div id="show-container"></div>
+    <div id="root" class="container"></div>
+    <template id="show-card">
+      <section class="card">
+        <h3>film title</h3>
+        <img />
+        <p>summary</p>
+        <div id="details">
+         <p id="genre"></p>
+         <p id="status"></p>
+         <p id="rating"></p>
+         <p id="runtime"></p>
+        </div>
+      </section>
+    </template>
+     <template id="episode-card">
+      <section class="card">
+        <h3>film title</h3>
+        <img />
+        <p>summary</p>
+        </section>
+        </template>
+    <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
+
+    <!-- Loads YOUR javascript code -->
+     <script src="script.js"></script>
+  </body>
+  <footer>
+    <p>Made by CYF Trainee</p>
+    <p>@Data from TVMaze</p>
+  </footer>
+>>>>>>> 08195f67b7b9974efdbd337c95c49aa35105ea3d
 </html>
 
 
