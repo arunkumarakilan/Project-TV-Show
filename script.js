@@ -1,6 +1,7 @@
 const state = {
   shows: [],
   episodes: [],
+  episodeCache: {},
   searchTerm: "",
   selectTerm: "",
   selectShow: "",
@@ -60,6 +61,12 @@ function setup() {
 //=> fetch API
 
 function episodeSource() {
+  if (state.episodeCache[state.showId]) {
+    state.episodes = state.episodeCache[state.showId];
+    render();
+    return;
+  }
+
   async function fetchEpisode() {
     try {
       const response = await fetch(
@@ -146,7 +153,7 @@ function filteredShowCards() {
       show.name === state.selectShow || state.selectShow === "";
     const searchShow = show.name
       .toLowerCase()
-      .includes(state.showSearch.toLowerCase());
+      .includes(state.showSearch.toLowerCase())||show.summary.toLowerCase().includes(state.showSearch.toLowerCase())||show.genres.join("").toLowerCase().includes(state.showSearch.toLowerCase());
     return selectShow && searchShow;
   }));
 }
